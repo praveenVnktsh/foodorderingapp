@@ -27,6 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Color mainColor = Color(0xFF5b49aa);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,33 +47,80 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
           height: 300,
           width: 600, // change it to fit the width of the mobile correctly.
-          decoration: const BoxDecoration(
-              color: Color(0xFF5b49aa),
-              borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+              color: mainColor,
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(35),
                   bottomRight: Radius.circular(35))),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(16.0, 100, 64, 0),
-            child: Column(
-              children: [
-                Text(
-                  "Order delicious food now!",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Color(0xFF6958b2).withAlpha(200),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(150),
+                    )),
+                height: 150,
+                width: 150,
+              ),
+              Positioned(
+                left: 300,
+                bottom: 50,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFF6958b2).withAlpha(200),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(150),
+                      )),
+                  height: 200,
+                  width: 200,
                 ),
-                SizedBox(
-                  height: 16,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(16.0, 100, 16, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        width: 300,
+                        child: Text(
+                          "Order delicious food now!",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    TextField(
+                        decoration: InputDecoration(
+                            hintText: "Search for any food item",
+                            fillColor: Colors.white,
+                            filled: true,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: mainColor,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 0.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular((30)))),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 0.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular((30)))))),
+                  ],
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: TextField(
-                      decoration:
-                          InputDecoration(border: OutlineInputBorder())),
-                ),
-              ],
-            ),
+              ),
+            ],
           )),
     );
   }
